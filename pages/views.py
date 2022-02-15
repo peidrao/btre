@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from listings.models import Listing
+from realtors.models import Realtor
 
 
 def index(request):
@@ -11,4 +12,8 @@ def index(request):
     return render(request, 'pages/index.html', context)
 
 def about(request):
-    return render(request, 'pages/about.html', {})
+    context = {
+        'realtors': Realtor.objects.order_by('-hire_date'),
+        'mvp_realtors': Realtor.objects.filter(is_mvp=True)
+    }
+    return render(request, 'pages/about.html', context)
