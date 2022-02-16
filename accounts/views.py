@@ -1,10 +1,13 @@
+from django.contrib import messages
 from django.urls import reverse
 from django.shortcuts import render, redirect
 
 
 def register(request):
-    context = {}
-    return render(request, 'accounts/register.html', context)
+    if request.method == 'POST':
+        messages.error(request, 'Error')
+        # return redirect(reverse('pages:index'))
+    return render(request, 'accounts/register.html')
 
 
 def login(request):
