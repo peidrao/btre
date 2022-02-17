@@ -73,30 +73,53 @@
       </ul>
 
       <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
         <li 
-        {% if "register" in request.path %}
+        {% if "dashboard" in request.path %}
             class="nav-item active mr-3"
         {% else %}
             class="nav-item mr-3"
         {% endif %}  
         >
-          <a class="nav-link" href="{% url 'account:register' %}">
-            <i class="fas fa-user-plus"></i> Register</a
+          <a class="nav-link" href="{% url 'account:dashboard' %}">
+            <i class="fas fa-user"></i> Profile</a
           >
         </li>
-        <li 
-          {% if "login" in request.path %}
-            class="nav-item active mr-3"
+        <li class="nav-item mr-3">
+          <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+            <i class="fas fa-door-closed"></i> Logout</a
+          >
+          <form action="{% url 'account:logout' %}" id="logout" method="POST">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+        </li>
+        {% else %}
+          <li 
+          {% if "register" in request.path %}
+              class="nav-item active mr-3"
           {% else %}
-            class="nav-item mr-3"
-          {% endif %}
-        >
-          <a class="nav-link" href="{% url 'account:login' %}">
-            <i class="fas fa-sign-in-alt"></i>
-
-            Login</a
+              class="nav-item mr-3"
+          {% endif %}  
           >
-        </li>
+            <a class="nav-link" href="{% url 'account:register' %}">
+              <i class="fas fa-user-plus"></i> Register</a
+            >
+          </li>
+          <li 
+            {% if "login" in request.path %}
+              class="nav-item active mr-3"
+            {% else %}
+              class="nav-item mr-3"
+            {% endif %}
+          >
+            <a class="nav-link" href="{% url 'account:login' %}">
+              <i class="fas fa-sign-in-alt"></i>
+
+              Login</a
+            >
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>

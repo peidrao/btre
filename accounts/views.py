@@ -23,7 +23,6 @@ def register(request):
                     messages.error(request, 'Email is beigin used!')
                     return redirect(reverse('account:register'))
                 else:
-                    # password = make_password(password)
                     user = User.objects.create_user(
                         username=username, password=password, email=email, first_name=first_name, last_name=last_name)
                     user.save()
@@ -61,4 +60,4 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         messages.success(request, 'You are now logged out')
-        return redirect('index')
+        return redirect(reverse('account:login'))
