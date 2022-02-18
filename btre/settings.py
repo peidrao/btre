@@ -113,10 +113,16 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-       BASE_DIR / "btre/static",
+    BASE_DIR / "btre/static",
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'peidrao01@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
