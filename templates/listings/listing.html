@@ -34,6 +34,7 @@
       </nav>
     </div>
   </section>
+  {% include 'partials/alerts.html' %}
 
   <!-- Listing -->
   <section id="listing" class="py-4">
@@ -142,7 +143,7 @@
             <input type="hidden" name="listing_id" value="{{listing.id}}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="{{listing.title}}" disabled>
+              <input type="text" name="listing" class="form-control" value="{{listing.title}}">
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Name:</label>
