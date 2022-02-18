@@ -2,7 +2,8 @@ from django.contrib import messages, auth
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
+
+from contacts.models import Contact
 
 
 def register(request):
@@ -52,7 +53,9 @@ def login(request):
 
 
 def dashboard(request):
-    context = {}
+    user_contacts = Contact.objects.filter(
+        user_id=request.user.id).order_by('-contact_date')
+    context = {'contacts': user_contacts }
     return render(request, 'accounts/dashboard.html', context)
 
 
